@@ -1,15 +1,24 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Post
+from django.http import HttpResponse, Http404
+
 
 # Create your views here.
 
-def test1(request):
-    return HttpResponse("blog/test1 응답!")
-
-def test2(request,no):
-    print("no 타입 :",type(no))
+def list(request):
+    post_list = Post.objects.all()
     
-    return HttpResponse(f"no : {no}")
+    titles = ''
+    
+    for post in post_list:
+        titles += post.title
+    
+    return HttpResponse(titles)
 
-def test3(request,year,month,day):
-    return HttpResponse(f"년:{year}, 월:{month}, 일:{day}")
+def detail(request,id):
+    try:
+        post = Post.objects.get(id=id)
+        
+    except Post.DoesNotExist:
+        raise Http404("존재하지 않는 데이터 입니다.")
+    
+    return HttpResponse(post.title)

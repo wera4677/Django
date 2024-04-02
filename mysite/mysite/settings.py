@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
+    'blog.apps.BlogConfig',
     'music',
 ]
 
@@ -83,7 +83,7 @@ DATABASES = {
         'PORT': '3306',
         'NAME': 'mydb',
         'USER': 'root',
-        'PASSWORD': 'admin123',
+        'PASSWORD': 'wera4677',
     }
 }
 
